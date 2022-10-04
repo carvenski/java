@@ -1,5 +1,5 @@
 ***# 写java一定要使用2样工具: idea + gradle 来构建项目-可省去各种麻烦 !!!***         
-***# (最新工具: vscode redhat java LSP + gradle7 非常好用!)***      
+***# (最新工具: vscode redhat java LSP plugin + gradle7 非常好用!)***      
 ***# 套壳绕开java的方式: 使用JNA调用golang编译的.so动态库 !!!***     
 
 #### 关于java语言
