@@ -7,6 +7,10 @@ Servlet之于java,其实就类似python的WSGI,
 - 拷贝项目目录到webapps/目录下
 - 启动jetty/tomcat即可
 
+## 手动编译命令
+javac -Djava.ext.dirs="/home/michael/github/java/sample-code/servlet3/" Z.java
+
+
 可以直接使用Servlet开发web应用,也可以使用一些框架,     
 比如SpringMVC框架,其实它就是Servlet的一层包装,     
 web框架原理都类似,替你写好了很多轮子代码而已.     

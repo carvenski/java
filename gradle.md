@@ -1,5 +1,6 @@
 ## gradle
-*java有gradle在手...太TM好用了...*
+*java有gradle在手...太TM好用了...*      
+*推荐使用最新的gradle7 - 性能有很大提升*
 
 #### init an java application/library/webapp project using gradle
 ```
@@ -26,6 +27,7 @@ java -jar xx.jar -cp 包路径
 ## gradlew
 ```
 gradlew就是gradle wrapper,好处就是不需要安装gradle,项目中自带gradlew的jar包,可直接运行使用,很方便.
+(gradlew会在后台自动下载好gradle到~/.gradle目录里面) 
 gradlew tasks: 显示可执行的task,每个项目都会有自定义的task,例如sprintboot的bootRun.
 ```
 

@@ -1,31 +1,33 @@
----
-## 写java一定要使用gradlew构建项目！！省去各种麻烦！！草
----
+***# 写java一定要使用2样工具: idea + gradle 来构建项目-可省去各种麻烦 !!!***         
+***# (最新工具: vscode redhat java LSP + gradle7 非常好用!)***      
+***# 套壳绕开java的方式: 使用JNA调用golang编译的.so动态库 !!!***     
 
-#### 关于指定jar包路径问题, 已经被坑过无数次了! 草
+#### 关于java语言
+- java和python对比学习,思想相通,语法上写法不同而已,语言层面的差别并不大
+- 但二者各有自己的一套语言生态,包含开发的一系列框架工具等需要花费时间熟悉
+- 从架构层面去说,语言不重要。但从开发来说,语言很重要。因为开发效率和体验会差很多！
+- 而开发效率的高低,会严重影响你每天的工作效率,进而影响你工作和生活的平衡。
+- 而工作效率的高低直接决定你每天在工作上所花的时间多少。决定你几点下班回家!
+- 所以以后,java只需停留在架构设计的理解层面即可，不需要也没必要再去写它。
+- 精通自己的语言技术栈py/go足以。简洁而高效。
+- Life is short, py and go. 
+
+
+#### 指定jar包路径
 - 方式一：使用java -cp "libs/*"  可以指定引用文件夹下的所有jar包,但是有时候会失效! -cp不能和-jar一起连用?
 - 方式二：使用java -Djava.ext.dirs="jpython_libs/" -jar jython-standalone-2.7.2.jar test.py  这个才是正确的姿势?一直有效
 - 参考 [java -cp和-Djava.ext.dirs](https://blog.csdn.net/zhuying_linux/article/details/7714194)
 (jar包实际上就是.class文件的压缩包,jvm会自动解压jar里的目录来加载.class文件,lib/和class/的作用其实一样)
 
-## java VS python /面向对象/思路相通
-      *其实java和python的思想和语法在理解上是基本一样的,只是具体的写法|稍有不同|而已
-      *java和python对比学习,思想相通,语法上写法稍微不同而已,语言层面的差别并不大
-      *但二者各有自己的一套语言生态,包含web开发的一系列框架工具等需要花费时间熟悉
-      *(需要一本类似'python参考手册'的经典java教程, 是啥?)     
-
-[java菜鸟教程](http://www.runoob.com/java/java-modifier-types.html)     
-
 #### hello world
 ```java
-// HelloWorld.java(文件名需与public类名一致,一个文件有且仅有一个public类)
+// HelloWorld.java 文件名需与public类名一致,一个文件有且仅有一个public类
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
 }
-// javac HelloWorld.java
-// java HelloWorld
+// javac HelloWorld.java && java HelloWorld
 ```
 
 #### 设置环境变量JAVA_HOME/JRE_HOME/CLASSPATH

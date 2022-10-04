@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plugin>
+    <id>com.finebi.plugin.biproxy</id>
+    <main-package>com.finebi</main-package>
+    <name><![CDATA[报表转发插件]]></name>
+    <active>yes</active>
+    <version>1.0</version>
+    <env-version>10.0</env-version>
+    <jartime>2019-02-27</jartime>
+    <vendor>michaely</vendor>
+    <description><![CDATA[报表转发插件]]></description>
+
+    <!-- <function-recorder class="com.finebi.plugin.biproxy.DemoFilter2"/>
+    <extra-decision>
+        <GlobalRequestFilterProvider class="com.finebi.plugin.biproxy.DemoFilter2"/>
+    </extra-decision> -->
+
+    <extra-core>
+        <DBAccessProvider class="com.finebi.plugin.biproxy.db.SystemConfigAccessBridge"/>                
+        <LocaleFinder class="com.finebi.plugin.biproxy.interfaces.LocaleFinder"/>        
+    </extra-core>
+    <extra-decision>
+        <WebResourceProvider class="com.finebi.plugin.biproxy.interfaces.BIShowExportCaptchaWebResourceProviderImpl"/>
+        <SystemOptionProvider class="com.finebi.plugin.biproxy.interfaces.ExportCaptchaOption"/>
+        <ControllerRegisterProvider class="com.finebi.plugin.biproxy.interfaces.ApiControllerBridge"/>
+        <HttpHandlerProvider class="com.finebi.plugin.biproxy.demo.DemoRequestHandlerBridge"/>
+        <URLAliasProvider class="com.finebi.plugin.biproxy.demo.DemoURLAliasBridge"/>
+    </extra-decision>
+    <function-recorder class="com.finebi.plugin.biproxy.interfaces.ApiControllerBridge"/>
+    <function-recorder class="com.finebi.plugin.biproxy.db.SystemConfigAccessBridge"/>
+    <function-recorder class="com.finebi.plugin.biproxy.demo.PublicHttpHandler"/>
+</plugin>
