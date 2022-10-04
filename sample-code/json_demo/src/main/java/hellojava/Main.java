@@ -14,10 +14,17 @@ public class Main{
         msg.setErrMsg("0");
         msg.setAlarmId("alarmId");
         msg.setResults(new ArrayList());
-
         String msg_str = JSON.toJSONString(msg);
         // Message m = JSON.parseObject(msg_str, Message.class);
         System.out.println(msg_str);
+
+        Resp resp = new Resp();
+        resp.setCode(0);
+        resp.setErrmsg("");
+        resp.setData(new ArrayList());
+        String resp_str = JSON.toJSONString(resp);
+        System.out.println(resp_str);
+
     }
 }
 
@@ -66,6 +73,33 @@ class Message {
     }  
     public void setErrMsg(String errMsg) {  
         this.errMsg = errMsg;
+    }  
+}  
+
+class Resp {
+    public Resp(){}  
+
+    private int code;
+    private String errmsg;
+    private Object data;
+
+    public int getCode() {
+        return code;  
+    }  
+    public void setCode(int code) {  
+        this.code = code;  
+    }  
+    public String getErrmsg() {
+        return errmsg;  
+    }  
+    public void setErrmsg(String errmsg) {  
+        this.errmsg = errmsg;  
+    }  
+    public Object getData() {
+        return data;  
+    }  
+    public void setData(Object data) {  
+        this.data = data;  
     }  
 }  
 
