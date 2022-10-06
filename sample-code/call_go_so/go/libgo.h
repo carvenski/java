@@ -71,11 +71,9 @@ extern "C" {
 
 // 需要申明使用C的字符串类型,以及C和Go的类型转换
 // TODO: CGo传参的话需要及时回收内存,否则内存泄漏 ?? unsafe.free(unsafe.Pointer(a))
+extern char* Hello(char* a);
 
-extern char* Hello(char* p0);
-
-// 直接启动一个httpserver,和java之间靠http localhost互相调用,耗时也就增加10ms而已,可忽略.
-
+// 直接启动一个httpserver,和java之间走http localhost互相调用,耗时也就增加10ms而已,可忽略.
 extern void HttpServer();
 
 #ifdef __cplusplus
