@@ -1,4 +1,4 @@
-### JAVA OOP
+# JAVA OOP
 
 ***写java一定要使用2个工具= idea + gradle 来构建项目 - 可以省去各种麻烦 !!!***         
 ***(vscode redhat java LSP plugin + gradle7 也很好用)***      
