@@ -1,6 +1,6 @@
-*** 写java一定要使用2个工具= idea + gradle 来构建项目-可省去各种麻烦 !!!***         
-*** vscode redhat java LSP plugin + gradle7 也很好用 ***      
-*** 套壳绕开java的方式: 使用JNA调用golang编译的.so动态库 !!!***     
+***写java一定要使用2个工具= idea + gradle 来构建项目-可省去各种麻烦 !!!***         
+***vscode redhat java LSP plugin + gradle7 也很好用***      
+***套壳绕开java的方式: 使用JNA调用golang编译的.so动态库 !!!***     
 
 #### 关于java语言
 - java和python对比学习,思想相通,语法上写法不同而已,语言层面的差别并不大
