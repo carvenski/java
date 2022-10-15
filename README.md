@@ -1,7 +1,6 @@
 # JAVA OOP
 
-**写java一定要使用2个工具= idea + gradle/maven 来构建项目 - 可以省去各种麻烦 !!!**         
-***(vscode redhat java LSP plugin + gradle7 也很好用)***      
+**写java一定要使用2个工具 = idea + gradle7/maven3 来构建项目 - 可以省去各种麻烦 !!!**               
 ***套壳绕开写java的方式: 使用JNA调用golang编译的.so动态库 !!!***     
 
 #### 关于java语言
