@@ -28,7 +28,7 @@ public class Cdc2DorisSQLDemoSQL {
                 "  PRIMARY KEY(id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
-                "  'hostname' = '10.239.174.41',\n" +
+                "  'hostname' = '',\n" +
                 "  'port' = '3306',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +
@@ -48,7 +48,7 @@ public class Cdc2DorisSQLDemoSQL {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'ip:18030',\n" +
                 "  'table.identifier' = 'test.flink_mysql_cdc_test',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

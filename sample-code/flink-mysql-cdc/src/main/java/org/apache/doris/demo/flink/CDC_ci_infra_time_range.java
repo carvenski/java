@@ -32,10 +32,10 @@ public class CDC_ci_infra_time_range {
                 "  PRIMARY KEY(id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
-                "  'hostname' = 'api.k8s-fie.intel.com',\n" +
+                "  'hostname' = '',\n" +
                 "  'port' = '31005',\n" +
-                "  'username' = 'fv_db_dev',\n" +
-                "  'password' = 'fvdev51$',\n" +
+                "  'username' = '',\n" +
+                "  'password' = '',\n" +
                 "  'database-name' = 'ci_infra_dashboard',\n" +
                 "  'table-name' = 'ci_infra_time_range',\n" +
                 "  'scan.startup.mode' = 'latest-offset'\n" +
@@ -53,7 +53,7 @@ public class CDC_ci_infra_time_range {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = '',\n" +
                 "  'table.identifier' = 'test.ci_infra_time_range',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
