@@ -20,7 +20,7 @@ public class Cdc2DorisSQLDemoStream {
 
     // MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
     MySqlSource<RowData> mySqlSource = MySqlSource.<RowData>builder()
-        .hostname("")
+        .hostname("10.239.174.41")
         .port(3306)
         .databaseList("test") 
         .tableList("test.flink_mysql_cdc_test")

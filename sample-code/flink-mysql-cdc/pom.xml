@@ -208,7 +208,10 @@ under the License.
                                     <!-- <mainClass>cdc.Cdc2DorisSQLDemoStream</mainClass> -->
                                     <!-- <mainClass>cdc.CDC_ci_infra</mainClass> -->
                                     <!-- <mainClass>cdc.CDC_ci_infra_time_range</mainClass> -->
-                                    <mainClass>cdc.CDC_ci_infra_up_down_time</mainClass>
+                                    <!-- <mainClass>cdc.CDC_ci_infra_up_down_time</mainClass> -->
+                                    <!-- <mainClass>cdc.CDC_individual_caf</mainClass> -->
+                                    <!-- <mainClass>cdc.CDC_fiv_ise_bug</mainClass>    -->                                                                     
+                                     <mainClass>cdc.CDC_onedb_commits</mainClass>   
                                 </transformer>
                             </transformers>
                         </configuration>

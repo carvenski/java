@@ -4,7 +4,7 @@ import java.util.UUID;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
-public class CDC_ci_infra_up_down_time {
+public class CDC_onedb_commits {
 
     public static void main(String[] args) throws Exception {
 
@@ -17,52 +17,60 @@ public class CDC_ci_infra_up_down_time {
       
         final StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
         
-        String jobName = "cdc_table_ci_infra_up_down_time";
+        String jobName = "cdc_onedb_commits";
         tEnv.getConfig().getConfiguration().setString("pipeline.name", jobName);
         
         // register a table in the catalog
         tEnv.executeSql(
             "CREATE TABLE S (\n" +
-                "  id INT,\n" +
-                "  service_name STRING,\n" +
-                "  up_start INT,\n" +
-                "  up_end INT,\n" +
-                "  down_start INT,\n" +
-                "  down_end INT,\n" +
-                "  up_time INT,\n" +
-                "  down_time INT,\n" +
-                "  create_time INT,\n" +
-                "  flag INT,\n" +                
-                "  PRIMARY KEY(id) NOT ENFORCED\n" +
+
+            " `_id` bigint, \n" +
+            " `_created_at` TIMESTAMP, \n" +
+            " `_updated_at` TIMESTAMP, \n" +
+            " `pr_link` varchar, \n" +
+            " `sha` varchar, \n" +
+            " `commit_message` STRING, \n" +
+            " `created_at` TIMESTAMP, \n" +
+            " `sender` varchar, \n" +
+            " `author` varchar, \n" +
+            " `author_date` TIMESTAMP, \n" +
+            " `committer` varchar, \n" +
+            " `committer_date` TIMESTAMP, \n" +           
+       
+                "  PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
-                "  'hostname' = 'api.k8s-fie.intel.com',\n" +
-                "  'port' = '31005',\n" +
-                "  'username' = 'fv_db_dev',\n" +
-                "  'password' = 'fvdev51$',\n" +
-                "  'database-name' = 'ci_infra_dashboard',\n" +
-                "  'table-name' = 'ci_infra_up_down_time',\n" +
+                "  'hostname' = 'sh-cluster-ingress.iglb.intel.com',\n" +
+                "  'port' = '42294',\n" +
+                "  'username' = 'doris_sync',\n" +
+                "  'password' = 'doris_sync@intel',\n" +
+                "  'database-name' = 'onedb_mysql',\n" +
+                "  'table-name' = 'commits',\n" +
                 "  'scan.startup.mode' = 'latest-offset'\n" +
                 ")");
         
         //doris table
         tEnv.executeSql(
             "CREATE TABLE D (\n" +
-                "  id INT,\n" +
-                "  service_name STRING,\n" +
-                "  up_start INT,\n" +
-                "  up_end INT,\n" +
-                "  down_start INT,\n" +
-                "  down_end INT,\n" +
-                "  up_time INT,\n" +
-                "  down_time INT,\n" +
-                "  create_time INT,\n" +
-                "  flag INT\n" +  
+
+            " `_id` bigint, \n" +
+            " `_created_at` TIMESTAMP, \n" +
+            " `_updated_at` TIMESTAMP, \n" +
+            " `pr_link` varchar, \n" +
+            " `sha` varchar, \n" +
+            " `commit_message` STRING, \n" +
+            " `created_at` TIMESTAMP, \n" +
+            " `sender` varchar, \n" +
+            " `author` varchar, \n" +
+            " `author_date` TIMESTAMP, \n" +
+            " `committer` varchar, \n" +
+            " `committer_date` TIMESTAMP \n" +   
+
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
                 "  'fenodes' = '10.165.40.11:18030',\n" +
-                "  'table.identifier' = 'test.ci_infra_up_down_time',\n" +
+                "  'table.identifier' = 'fdws_doris.commits',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               
@@ -76,7 +84,6 @@ public class CDC_ci_infra_up_down_time {
     }
 }
  
-
 
 
 
