@@ -1,6 +1,7 @@
 ## mvn
 ```
-最新经验: mvn比gradle好用。
+最新经验: 
+mvn比gradle好用, 而且mvn资源占用低很多。
 以后项目优先使用mvn。
 ```
 
