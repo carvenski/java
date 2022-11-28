@@ -20,17 +20,6 @@ public class CDC_ci_infra {
         String jobName = "cdc_table_ci_infra";
         tEnv.getConfig().getConfiguration().setString("pipeline.name", jobName);
         
-        // =========================================================
-        // FUCK
-        // 之前一直报错用户mysql表中的time字段和flink sql time关键字冲突了
-        // 搞了三天时间查询了所有google都没答案
-        // 加了三天班没办法用不了sql 只能用java datastream api重写sql任务
-        // 今天早上不知怎么突然想起来在字段前面加个 `time` 括起来 试了一下
-        // 就好了。。。日
-        // `time` INT
-        // 注: sql中使用 `` 来区分保留关键字和用户字段 (don't konw that)
-        // =========================================================
-
         // register a table in the catalog
         tEnv.executeSql(
             "CREATE TABLE S (\n" +

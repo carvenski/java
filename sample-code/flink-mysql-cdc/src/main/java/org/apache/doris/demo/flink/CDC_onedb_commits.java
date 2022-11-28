@@ -46,7 +46,8 @@ public class CDC_onedb_commits {
                 "  'password' = 'doris_sync@intel',\n" +
                 "  'database-name' = 'onedb_mysql',\n" +
                 "  'table-name' = 'commits',\n" +
-                "  'scan.startup.mode' = 'latest-offset'\n" +
+                "  'scan.startup.mode' = 'latest-offset',\n" +
+                "  'server-id' = '5400-6400' " +
                 ")");
         
         //doris table
@@ -80,7 +81,7 @@ public class CDC_onedb_commits {
                 ")");
 
         //insert into mysql table to doris table
-        tEnv.executeSql("INSERT INTO D select * from S");
+        tEnv.executeSql("INSERT INTO D select * from S ;");
     }
 }
  
