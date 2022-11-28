@@ -216,7 +216,8 @@ under the License.
                                     <!-- <mainClass>cdc.CDC_ci_infra_up_down_time</mainClass> -->
                                     <!-- <mainClass>cdc.CDC_individual_caf</mainClass> -->
                                     <!-- <mainClass>cdc.CDC_fiv_ise_bug</mainClass>    -->                                                                     
-                                    <mainClass>cdc.CDC_onedb_commits</mainClass>   
+                                    <!-- <mainClass>cdc.CDC_onedb_commits</mainClass>    -->
+                                    <mainClass>cdc.CDC_onedb_pull_requests</mainClass>   
                                 </transformer>
                             </transformers>
                         </configuration>

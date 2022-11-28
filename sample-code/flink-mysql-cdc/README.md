@@ -19,6 +19,9 @@ yuwei给onedb的新的mysql master刚刚配置了binlog
 最后并不是flink cdc里面的slave id重复
 就是mysql master id不能设置为0，改成123就好了。
 都是坑。浪费人生。
+
+同时注意，连接到同一个db的多个table的每个任务，server_id必须不一样。
+默认随机生成的有时候会冲突，解决办法是在任务中指定server_id (5400-6400)
 ```
 
 
