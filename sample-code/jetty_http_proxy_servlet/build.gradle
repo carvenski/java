@@ -14,7 +14,8 @@ plugins {
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+//    jcenter()
+mavenCentral()
 }
 
 dependencies {
@@ -25,8 +26,8 @@ dependencies {
     implementation 'com.google.guava:guava:26.0-jre'
 
     // servlet/jetty jar
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-    compile group: 'org.eclipse.jetty', name: 'jetty-proxy', version: '9.4.30.v20200611'
+    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    implementation group: 'org.eclipse.jetty', name: 'jetty-proxy', version: '9.4.30.v20200611'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

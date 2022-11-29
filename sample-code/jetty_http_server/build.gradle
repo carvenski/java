@@ -17,7 +17,7 @@ plugins {
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+//    jcenter()
     mavenCentral()
 }
 
@@ -25,9 +25,9 @@ dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:26.0-jre'
 
-    compile "javax.servlet:servlet-api:2.5"
-    compile 'org.eclipse.jetty:jetty-server:7.5.0.RC2'
-    compile 'org.eclipse.jetty:jetty-servlet:7.5.0.RC2'
+    implementation "javax.servlet:servlet-api:2.5"
+    implementation 'org.eclipse.jetty:jetty-server:7.5.0.RC2'
+    implementation 'org.eclipse.jetty:jetty-servlet:7.5.0.RC2'
 
 
     // Use JUnit test framework
