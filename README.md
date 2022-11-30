@@ -1,86 +1,81 @@
-## JAVA OOP
-*只要能选 就不要写java 浪费时间 人生苦短 我用pygo*
+## JAVA
+**只要能选 就不要写java 浪费时间 人生苦短 我用pygo**
 
-======
-
-**对于java只需停留在相通的架构设计的理解层面即可 不需要也没必要再去碰它**        
-**如果非要写就一定要使用这几个工具 idea + gradle6/maven3 来构建项目 = 可以省去各种麻烦(踩TM无数坑了浪费多少时间) !**              
-**一个套壳绕开写java的方式 使用JNA调用go编译的.so动态库 !**     
-
-#### 关于java语言
-- java和python对比学习,思想相通,语法上写法不同而已,语言层面的差别并不大
-- 但二者各有自己的一套语言生态,包含开发的一系列框架工具等需要花费时间熟悉
-- 从架构层面去说,语言不重要。但从开发来说,语言很重要。因为开发效率和体验会差很多!!!
-- 而开发效率的高低,会严重影响你每天的工作效率,进而影响你工作和生活的平衡。
-- 而工作效率的高低直接决定你每天在工作上所花的时间多少。决定你几点下班回家!!!
-- 所以以后,java只需停留在架构设计的理解层面即可，不需要也没必要再去写它。
-- 精通自己的语言技术栈py和go足以。简洁高效而强大。
-- Life is short, please use py and go. 
-
-
-#### 指定jar包路径
-- 方式一：使用java -cp "libs/*"  可以指定引用文件夹下的所有jar包,但是有时候会失效! -cp不能和-jar一起连用?
-- 方式二：使用java -Djava.ext.dirs="jpython_libs/" -jar jython-standalone-2.7.2.jar test.py  这个才是正确的姿势?一直有效
-- 参考 [java -cp和-Djava.ext.dirs](https://blog.csdn.net/zhuying_linux/article/details/7714194)
-(jar包实际上就是.class文件的压缩包,jvm会自动解压jar里的目录来加载.class文件,lib/和class/的作用其实一样)
-
-#### hello world
-```java
-// HelloWorld.java 文件名需与public类名一致,一个文件有且仅有一个public类
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-    }
-}
-// javac HelloWorld.java && java HelloWorld
+```
+对于java 只需停留在相通的架构设计的理解层面即可 不需要也没必要再去碰它
+如果非要写就一定要使用这几个工具 idea + gradle6/maven3 来构建项目 = 
+可以省去各种麻烦 踩TM无数坑了浪费了多少时间！
+一个套壳绕开写java的方式 使用JNA调用go编译的.so动态库 !
 ```
 
-#### 设置环境变量JAVA_HOME/JRE_HOME/CLASSPATH
-    classpath变量: 引用第三方类的寻找路径     
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk     
-    export JRE_HOME=$JAVA_HOME/jre     
-    export classpath=.;%JAVA_HOME%\lib;%JAVA_HOME%\jre\lib;     
-    
-#### 几个要点
-    1.任何一个Java程序可以认为是一系列对象的集合,而这些对象通过调用彼此的方法来协同工作,java是完全面向对象的.
-    2.所有的类名的首字母应该大写.如果类名由若干单词组成,那么每个单词的首字母应该大写,例如MyFirstJavaClass
-    3.所有的方法名都应该以小写字母开头,如果方法名含有若干单词,则后面的每个单词首字母大写.
-    4.源文件名必须和public类名相同.
-    5.所有的Java程序从public static void main(String []args)方法开始执行.
+#### some thoughts
+```
+语言各有自己的一套生态,主要包含开发的一系列框架等等需要花费时间熟悉
+从架构层面去说,语言不重要。但从开发来说,语言很重要! 因为开发效率和体验会差很多!
+而开发效率的高低,会严重影响你每天的工作效率,进而影响你工作和生活的平衡。
+工作效率的高低就决定你每天在工作上所花的时间多少。决定你几点下班回家!
+所以,java只需停留在架构设计的理解层面即可,不需要也没必要再去写它。
+精通自己的语言技术栈py和go足以。简洁高效而强大。
+Life is short, please use py and go. 
+```
+
+## java basics
+
+#### 手动指定jar包路径
+```
+- 使用java -cp "libs/*"  可以指定引用文件夹下的所有jar包,但是有时候会失效! -cp不能和-jar一起连用?
+- 使用java -Djava.ext.dirs="jpython_libs/" -jar jython-standalone-2.7.2.jar test.py  这个才是正确的姿势?一直有效
+jar包实际上就是.class文件的压缩包,jvm会自动解压jar里的目录来加载.class文件
+lib/和class/的作用其实一样
+```
+
+#### 环境变量设置
+```  
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk     
+export JRE_HOME=$JAVA_HOME/jre       
+export classpath=.;%JAVA_HOME%\lib;%JAVA_HOME%\jre\lib;     
+```
+ 
+#### tips
+```
+任何一个Java程序可以认为是一系列对象的集合,这些对象调用彼此的方法来协同工作,java是完全面向对象的
+源文件名必须和public类名相同
+所有的Java程序从public static void main(String []args)方法开始执行
+```
 
 #### 4种访问控制修饰符: default, public , protected, private
+```
     修饰符            当前类        同一包内        子孙类       其他包
     default:           y             y              y           y
     public :           y             y              y           n
     protected:         y             y              n           n
     private:           y             n              n           n
-```
-1.java/python/go访问权限对比:
+
+// java/python/go访问权限对比
 python通过加__来控制访问权限,go通过首字母大小写来控制访问权限,
 python和go相当于只使用java的public/private这2个访问权限的控制(default/protected基本用不到...)
 写代码的时候基本只用到public/private而已,要么允许被访问,要么不允许访问,就这么简单.使用场景足以.
 
-*从这一点上说,java的4种访问权限控制符设计的多余了-写代码简单实用最重要啊!
-*在python和go里只需要使用puclic/private 2种访问权限就足够了!也没见不够用的场景...
+从这一点上说,java的4种访问权限控制符设计的多余了
+在python和go里只需要使用puclic/private 2种访问权限就足够了! 也没见不够用的场景。
 
-2.java/python 静态变量/静态方法 vs 实例变量/实例方法:
+// java/python 静态变量/静态方法 vs 实例变量/实例方法
 java在变量/方法前加static修饰符的就是静态变量/静态方法,
 python没有self.的就是静态变量,加@staticmethod装饰器就是静态方法,python还有个@classmethod装饰器.
-(注:java里静态方法就是类方法,python里静态方法和类方法不一样(类方法多了个cls参数))
-```
+注:java里静态方法就是类方法,python里静态方法和类方法不一样(类方法多了个cls参数)
 
-```
-java的类只有2种访问权限:
+
+// java的类只有2种访问权限
 public/default(就是说类前面要么加public修饰,要么什么都不加默认为default)
 
-java的变量和方法有4种访问权限：
+// java的变量和方法有4种访问权限
 public/default/protected/private, 但常用2种(public/private)
 ```
 
+#### 吐槽一下
 ```
-吐槽一下:
-java繁杂冗余的语法需要简化,应该以简洁实用为目的...
-显然kotlin/scala的设计出发点就是为了使java的语法更简洁实用吧...
+java繁杂冗余的语法需要简化,应该以简洁实用为目的
+显然kotlin/scala的设计出发点就是为了使java的语法更简洁实用吧
 ```
 
 #### 构造方法
@@ -915,17 +910,6 @@ public class VarargsDemo {
 ```
 
 ## java 文本IO/二进制IO/Java流(Stream)
-```java
-
-
-
 ```
 
-## ...
-
-##### last sync at 2021.6.10(由于太保网络原因暂时迁移到gitee.)
-
-
-
-
-
+```
