@@ -11,7 +11,7 @@ public class CDC_individual_build {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -112,7 +112,11 @@ public class CDC_individual_build {
             " `uads_ack` int, \n" +
             " `uads_build_duration` int, \n" +
             " `uads_caf_duration` int, \n" +
-            " `uads_duration` int, \n" +         
+            " `uads_duration` int, \n" +                 
+            " `uads_queue` int, \n" +
+            " `uads_build_queue` int, \n" +
+            " `uads_caf_queue` int, \n" +
+            
        
                 "  PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
@@ -218,12 +222,15 @@ public class CDC_individual_build {
             " `uads_ack` int, \n" +
             " `uads_build_duration` int, \n" +
             " `uads_caf_duration` int, \n" +
-            " `uads_duration` int \n" +
+            " `uads_duration` int, \n" +
+            " `uads_queue` int, \n" +
+            " `uads_build_queue` int, \n" +
+            " `uads_caf_queue` int \n" +
 
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'test.individual_build',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

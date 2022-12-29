@@ -11,7 +11,7 @@ public class CDC_onedb_hsds {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -27,11 +27,13 @@ public class CDC_onedb_hsds {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+            
             " `hsd_id` varchar, \n" +
-            " `type` varchar, \n" +
-            " `to` varchar " +     
-
-            " ,\n PRIMARY KEY(_id) NOT ENFORCED\n" +
+            " `repo_full_name` varchar, \n" +
+            " `sha` varchar, \n" +
+            " `pr_link` varchar, \n" +
+            
+            "\n PRIMARY KEY(_id) NOT ENFORCED\n" +
             ") WITH (\n" +
             "  'connector' = 'mysql-cdc',\n" +
             "  'hostname' = 'sh-cluster-ingress.iglb.intel.com',\n" +
@@ -51,14 +53,16 @@ public class CDC_onedb_hsds {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+
             " `hsd_id` varchar, \n" +
-            " `type` varchar, \n" +
-            " `to` varchar " +
+            " `repo_full_name` varchar, \n" +
+            " `sha` varchar, \n" +
+            " `pr_link` varchar \n" +            
 
             ") \n" +
             "WITH (\n" +
             "  'connector' = 'doris',\n" +
-            "  'fenodes' = '10.165.40.11:18030',\n" +
+            "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
             "  'table.identifier' = 'fdws_doris.hsds',\n" +
             "  'username' = 'root',\n" +
             "  'password' = 'root',\n" +    

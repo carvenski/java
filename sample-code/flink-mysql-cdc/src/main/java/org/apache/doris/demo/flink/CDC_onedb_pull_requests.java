@@ -11,7 +11,7 @@ public class CDC_onedb_pull_requests {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -27,6 +27,7 @@ public class CDC_onedb_pull_requests {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+
             " `title` STRING, \n" +
             " `number` int, \n" +
             " `link` varchar, \n" +
@@ -39,16 +40,20 @@ public class CDC_onedb_pull_requests {
             " `base_sha` varchar, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `updated_at` TIMESTAMP, \n" +
+            " `code_review_completed_at` TIMESTAMP, \n" +
+            " `build_verified_at` TIMESTAMP, \n" +
+            " `test_verified_at` TIMESTAMP, \n" +
+            " `controlled_merge_at` TIMESTAMP, \n" +
             " `submittable_at` TIMESTAMP, \n" +
             " `merged_at` TIMESTAMP, \n" +
             " `closed_at` TIMESTAMP, \n" +
             " `labels` STRING, \n" +
             " `merge_commit_sha` varchar, \n" +
             " `draft` tinyint, \n" +
-            " `merged` tinyint, \n" +
-            " `mergeable` tinyint, \n" +
             " `rebaseable` tinyint, \n" +
+            " `mergeable` tinyint, \n" +
             " `mergeable_state` varchar, \n" +
+            " `merged` tinyint, \n" +
             " `created_by` varchar, \n" +
             " `merged_by` varchar, \n" +
             " `comments` int, \n" +
@@ -61,9 +66,9 @@ public class CDC_onedb_pull_requests {
             " `repo_full_name` varchar, \n" +
             " `repo_branch` varchar, \n" +
             " `repo_private` tinyint, \n" +
-            " `source` varchar \n" +
+            " `source` varchar, \n" +
          
-                ",\n PRIMARY KEY(_id) NOT ENFORCED\n" +
+                "\n PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
                 "  'hostname' = 'sh-cluster-ingress.iglb.intel.com',\n" +
@@ -83,6 +88,7 @@ public class CDC_onedb_pull_requests {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+
             " `title` STRING, \n" +
             " `number` int, \n" +
             " `link` varchar, \n" +
@@ -95,16 +101,20 @@ public class CDC_onedb_pull_requests {
             " `base_sha` varchar, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `updated_at` TIMESTAMP, \n" +
+            " `code_review_completed_at` TIMESTAMP, \n" +
+            " `build_verified_at` TIMESTAMP, \n" +
+            " `test_verified_at` TIMESTAMP, \n" +
+            " `controlled_merge_at` TIMESTAMP, \n" +
             " `submittable_at` TIMESTAMP, \n" +
             " `merged_at` TIMESTAMP, \n" +
             " `closed_at` TIMESTAMP, \n" +
             " `labels` STRING, \n" +
             " `merge_commit_sha` varchar, \n" +
             " `draft` tinyint, \n" +
-            " `merged` tinyint, \n" +
-            " `mergeable` tinyint, \n" +
             " `rebaseable` tinyint, \n" +
+            " `mergeable` tinyint, \n" +
             " `mergeable_state` varchar, \n" +
+            " `merged` tinyint, \n" +
             " `created_by` varchar, \n" +
             " `merged_by` varchar, \n" +
             " `comments` int, \n" +
@@ -122,7 +132,7 @@ public class CDC_onedb_pull_requests {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'fdws_doris.pull_requests',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

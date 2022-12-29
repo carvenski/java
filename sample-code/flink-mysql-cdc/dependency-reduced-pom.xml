@@ -72,7 +72,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>cdc.CDC_onedb_pull_requests</mainClass>
+                  <mainClass>cdc.CDC_ci_infra</mainClass>
                 </transformer>
               </transformers>
             </configuration>

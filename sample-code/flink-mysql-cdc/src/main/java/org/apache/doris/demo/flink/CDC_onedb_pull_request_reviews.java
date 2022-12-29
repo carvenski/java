@@ -4,20 +4,20 @@ import java.util.UUID;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
-public class CDC_onedb_reviews {
+public class CDC_onedb_pull_request_reviews {
 
     public static void main(String[] args) throws Exception {
 
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
         final StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
         
-        String jobName = "cdc_onedb_reviews";
+        String jobName = "cdc_onedb_pull_request_reviews";
         tEnv.getConfig().getConfiguration().setString("pipeline.name", jobName);
         
         // register a table in the catalog
@@ -27,14 +27,16 @@ public class CDC_onedb_reviews {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+
             " `pr_link` varchar, \n" +
             " `review_id` bigint, \n" +
+            " `repo_full_name` varchar, \n" +
             " `commit_id` varchar, \n" +
             " `state` varchar, \n" +
             " `sender` varchar, \n" +
-            " `submitted_at` TIMESTAMP \n" +      
+            " `submitted_at` TIMESTAMP, \n" +
        
-                " ,\n   PRIMARY KEY(_id) NOT ENFORCED\n" +
+                " \n   PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
                 "  'hostname' = 'sh-cluster-ingress.iglb.intel.com',\n" +
@@ -42,7 +44,7 @@ public class CDC_onedb_reviews {
                 "  'username' = 'doris_sync',\n" +
                 "  'password' = 'doris_sync@intel',\n" +
                 "  'database-name' = 'onedb_mysql',\n" +
-                "  'table-name' = 'reviews',\n" +
+                "  'table-name' = 'pull_request_reviews',\n" +
                 "  'scan.startup.mode' = 'latest-offset',\n" +
                 String.format("  'server-id' = '%s' ", args[0]) +
                 ")");
@@ -54,8 +56,10 @@ public class CDC_onedb_reviews {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
+
             " `pr_link` varchar, \n" +
             " `review_id` bigint, \n" +
+            " `repo_full_name` varchar, \n" +
             " `commit_id` varchar, \n" +
             " `state` varchar, \n" +
             " `sender` varchar, \n" +
@@ -64,8 +68,8 @@ public class CDC_onedb_reviews {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
-                "  'table.identifier' = 'fdws_doris.reviews',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
+                "  'table.identifier' = 'fdws_doris.pull_request_reviews',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               

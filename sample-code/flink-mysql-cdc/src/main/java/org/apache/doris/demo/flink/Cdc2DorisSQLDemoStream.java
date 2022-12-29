@@ -40,7 +40,7 @@ public class Cdc2DorisSQLDemoStream {
     DorisSink.Builder<RowData> builder = DorisSink.builder();
     // DorisSink.Builder<String> builder = DorisSink.builder();
     DorisOptions.Builder dorisBuilder = DorisOptions.builder();
-    dorisBuilder.setFenodes("10.165.40.11:18030")
+    dorisBuilder.setFenodes("doris-web.datainfra.intel.com")
             .setTableIdentifier("test.flink_mysql_cdc_test")
             .setUsername("root")
             .setPassword("root");
@@ -80,7 +80,7 @@ public class Cdc2DorisSQLDemoStream {
     StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
     // enable checkpoint
-    env.enableCheckpointing(10*1000);
+    env.enableCheckpointing(60*1000);
 
     env
       .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source").setParallelism(1)

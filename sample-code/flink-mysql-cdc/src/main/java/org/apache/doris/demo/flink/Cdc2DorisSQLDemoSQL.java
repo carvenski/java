@@ -11,7 +11,7 @@ public class Cdc2DorisSQLDemoSQL {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -48,7 +48,7 @@ public class Cdc2DorisSQLDemoSQL {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'test.flink_mysql_cdc_test',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

@@ -11,7 +11,7 @@ public class CDC_onedb_commits {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -27,15 +27,17 @@ public class CDC_onedb_commits {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-            " `pr_link` varchar, \n" +
+
+            " `repo_full_name` varchar, \n" +
             " `sha` varchar, \n" +
+            " `pr_link` varchar, \n" +
             " `commit_message` STRING, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `sender` varchar, \n" +
             " `author` varchar, \n" +
             " `author_date` TIMESTAMP, \n" +
             " `committer` varchar, \n" +
-            " `committer_date` TIMESTAMP, \n" +           
+            " `committer_date` TIMESTAMP, \n" +
        
                 "  PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
@@ -57,20 +59,22 @@ public class CDC_onedb_commits {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-            " `pr_link` varchar, \n" +
+
+            " `repo_full_name` varchar, \n" +
             " `sha` varchar, \n" +
+            " `pr_link` varchar, \n" +
             " `commit_message` STRING, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `sender` varchar, \n" +
             " `author` varchar, \n" +
             " `author_date` TIMESTAMP, \n" +
             " `committer` varchar, \n" +
-            " `committer_date` TIMESTAMP \n" +   
+            " `committer_date` TIMESTAMP \n" +
 
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'fdws_doris.commits',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

@@ -11,7 +11,7 @@ public class CDC_individual_caf {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -165,7 +165,7 @@ public class CDC_individual_caf {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'test.individual_caf',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    

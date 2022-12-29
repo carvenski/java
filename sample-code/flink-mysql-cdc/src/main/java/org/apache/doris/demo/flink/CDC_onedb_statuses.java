@@ -11,7 +11,7 @@ public class CDC_onedb_statuses {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         
         // must open checkpoint, Flink Doris Connector write data by it
-        env.enableCheckpointing(10*1000);
+        env.enableCheckpointing(60*1000);
 
         env.setParallelism(1);
       
@@ -27,18 +27,20 @@ public class CDC_onedb_statuses {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-            " `pr_link` varchar, \n" +
-            " `status_id` bigint, \n" +
+
             " `sha` varchar, \n" +
+            " `status_id` bigint, \n" +
+            " `repo_full_name` varchar, \n" +
+            " `pr_link` varchar, \n" +
             " `context` varchar, \n" +
             " `state` varchar, \n" +
             " `description` STRING, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `updated_at` TIMESTAMP, \n" +
             " `sender` varchar, \n" +
-            " `target_url` varchar \n" +        
+            " `target_url` varchar, \n" +
        
-                " ,\n   PRIMARY KEY(_id) NOT ENFORCED\n" +
+                " \n   PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
                 "  'hostname' = 'sh-cluster-ingress.iglb.intel.com',\n" +
@@ -58,9 +60,11 @@ public class CDC_onedb_statuses {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-            " `pr_link` varchar, \n" +
-            " `status_id` bigint, \n" +
+
             " `sha` varchar, \n" +
+            " `status_id` bigint, \n" +
+            " `repo_full_name` varchar, \n" +
+            " `pr_link` varchar, \n" +
             " `context` varchar, \n" +
             " `state` varchar, \n" +
             " `description` STRING, \n" +
@@ -72,7 +76,7 @@ public class CDC_onedb_statuses {
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
-                "  'fenodes' = '10.165.40.11:18030',\n" +
+                "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
                 "  'table.identifier' = 'fdws_doris.statuses',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
