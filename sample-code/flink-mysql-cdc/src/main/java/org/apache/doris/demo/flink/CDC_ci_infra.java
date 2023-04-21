@@ -30,15 +30,23 @@ public class CDC_ci_infra {
                 "  PRIMARY KEY(id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
-                "  'hostname' = 'api.k8s-fie.intel.com',\n" +
-                "  'port' = '31005',\n" +
-                "  'username' = 'fv_db_dev',\n" +
-                "  'password' = 'fvdev51$',\n" +
-                "  'database-name' = 'ci_infra_dashboard',\n" +
-                "  'table-name' = 'ci_infra',\n" +
-                "  'scan.startup.mode' = 'latest-offset'\n" +
+                // "  'hostname' = 'api.k8s-fie.intel.com',\n" +
+                // "  'port' = '31005',\n" +
+                // "  'username' = 'fv_db_dev',\n" +
+                // "  'password' = 'fvdev51$',\n" +
+                // "  'database-name' = 'ci_infra_dashboard',\n" +
+                // "  'table-name' = 'ci_infra',\n" +
+                "  'hostname' = 'maria4397-lb-fm-in.iglb.intel.com',\n" +
+                "  'port' = '3307',\n" +
+                "  'username' = 'biosinfra_std_rw',\n" +
+                "  'password' = 'bSx6aYuB4TlL534',\n" +
+                "  'database-name' = 'biosinfra_std',\n" +
+                "  'table-name' = 'ci_infra',\n" +                
+                "  'scan.startup.mode' = 'latest-offset',\n" +
+                "  'jdbc.properties.enabledTLSProtocols' = 'TLSv1.2'\n" +                
+                // "  'jdbc.properties.useSSL' = 'true'\n" +                
                 ")");
-        
+
         //doris table
         tEnv.executeSql(
             "CREATE TABLE D (\n" +

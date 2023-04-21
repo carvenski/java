@@ -27,7 +27,6 @@ public class CDC_onedb_commits {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-
             " `repo_full_name` varchar, \n" +
             " `sha` varchar, \n" +
             " `pr_link` varchar, \n" +
@@ -38,7 +37,16 @@ public class CDC_onedb_commits {
             " `author_date` TIMESTAMP, \n" +
             " `committer` varchar, \n" +
             " `committer_date` TIMESTAMP, \n" +
-       
+            " `build_verified_state` varchar, \n" +
+            " `build_verified_at` TIMESTAMP, \n" +
+            " `build_verified_url` varchar, \n" +
+            " `test_verified_state` varchar, \n" +
+            " `test_verified_at` TIMESTAMP, \n" +
+            " `test_verified_url` varchar, \n" +
+            " `controlled_merge_state` varchar, \n" +
+            " `controlled_merge_at` TIMESTAMP, \n" +
+            " `controlled_merge_url` varchar, \n" +
+
                 "  PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
@@ -47,7 +55,7 @@ public class CDC_onedb_commits {
                 "  'username' = 'doris_sync',\n" +
                 "  'password' = 'doris_sync@intel',\n" +
                 "  'database-name' = 'onedb_mysql',\n" +
-                "  'table-name' = 'commits',\n" +
+                "  'table-name' = 'pull_request_commits',\n" +
                 "  'scan.startup.mode' = 'latest-offset',\n" +
                 String.format("  'server-id' = '%s' ", args[0]) + 
                 ")");
@@ -59,7 +67,6 @@ public class CDC_onedb_commits {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-
             " `repo_full_name` varchar, \n" +
             " `sha` varchar, \n" +
             " `pr_link` varchar, \n" +
@@ -69,13 +76,22 @@ public class CDC_onedb_commits {
             " `author` varchar, \n" +
             " `author_date` TIMESTAMP, \n" +
             " `committer` varchar, \n" +
-            " `committer_date` TIMESTAMP \n" +
+            " `committer_date` TIMESTAMP, \n" +
+            " `build_verified_state` varchar, \n" +
+            " `build_verified_at` TIMESTAMP, \n" +
+            " `build_verified_url` varchar, \n" +
+            " `test_verified_state` varchar, \n" +
+            " `test_verified_at` TIMESTAMP, \n" +
+            " `test_verified_url` varchar, \n" +
+            " `controlled_merge_state` varchar, \n" +
+            " `controlled_merge_at` TIMESTAMP, \n" +
+            " `controlled_merge_url` varchar \n" +
 
                 ") \n" +
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
                 "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
-                "  'table.identifier' = 'fdws_doris.commits',\n" +
+                "  'table.identifier' = 'test.pull_request_commits',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               

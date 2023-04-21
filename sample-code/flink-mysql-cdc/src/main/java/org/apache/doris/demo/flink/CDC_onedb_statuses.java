@@ -48,7 +48,7 @@ public class CDC_onedb_statuses {
                 "  'username' = 'doris_sync',\n" +
                 "  'password' = 'doris_sync@intel',\n" +
                 "  'database-name' = 'onedb_mysql',\n" +
-                "  'table-name' = 'statuses',\n" +
+                "  'table-name' = 'pull_request_statuses',\n" +
                 "  'scan.startup.mode' = 'latest-offset',\n" +
                 String.format("  'server-id' = '%s' ", args[0]) +
                 ")");
@@ -77,7 +77,7 @@ public class CDC_onedb_statuses {
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
                 "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
-                "  'table.identifier' = 'fdws_doris.statuses',\n" +
+                "  'table.identifier' = 'test.pull_request_statuses',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               

@@ -27,7 +27,6 @@ public class CDC_onedb_pull_requests {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-
             " `title` STRING, \n" +
             " `number` int, \n" +
             " `link` varchar, \n" +
@@ -40,10 +39,10 @@ public class CDC_onedb_pull_requests {
             " `base_sha` varchar, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `updated_at` TIMESTAMP, \n" +
-            " `code_review_completed_at` TIMESTAMP, \n" +
-            " `build_verified_at` TIMESTAMP, \n" +
-            " `test_verified_at` TIMESTAMP, \n" +
-            " `controlled_merge_at` TIMESTAMP, \n" +
+            " `two_code_review_approved_at` TIMESTAMP, \n" +
+            " `review_build_verified_success_at` TIMESTAMP, \n" +
+            " `review_test_verified_success_at` TIMESTAMP, \n" +
+            " `review_controlled_merge_success_at` TIMESTAMP, \n" +
             " `submittable_at` TIMESTAMP, \n" +
             " `merged_at` TIMESTAMP, \n" +
             " `closed_at` TIMESTAMP, \n" +
@@ -67,7 +66,7 @@ public class CDC_onedb_pull_requests {
             " `repo_branch` varchar, \n" +
             " `repo_private` tinyint, \n" +
             " `source` varchar, \n" +
-         
+
                 "\n PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
                 "  'connector' = 'mysql-cdc',\n" +
@@ -88,7 +87,6 @@ public class CDC_onedb_pull_requests {
             " `_id` bigint, \n" +
             " `_created_at` TIMESTAMP, \n" +
             " `_updated_at` TIMESTAMP, \n" +
-
             " `title` STRING, \n" +
             " `number` int, \n" +
             " `link` varchar, \n" +
@@ -101,10 +99,10 @@ public class CDC_onedb_pull_requests {
             " `base_sha` varchar, \n" +
             " `created_at` TIMESTAMP, \n" +
             " `updated_at` TIMESTAMP, \n" +
-            " `code_review_completed_at` TIMESTAMP, \n" +
-            " `build_verified_at` TIMESTAMP, \n" +
-            " `test_verified_at` TIMESTAMP, \n" +
-            " `controlled_merge_at` TIMESTAMP, \n" +
+            " `two_code_review_approved_at` TIMESTAMP, \n" +
+            " `review_build_verified_success_at` TIMESTAMP, \n" +
+            " `review_test_verified_success_at` TIMESTAMP, \n" +
+            " `review_controlled_merge_success_at` TIMESTAMP, \n" +
             " `submittable_at` TIMESTAMP, \n" +
             " `merged_at` TIMESTAMP, \n" +
             " `closed_at` TIMESTAMP, \n" +
@@ -133,7 +131,7 @@ public class CDC_onedb_pull_requests {
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
                 "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
-                "  'table.identifier' = 'fdws_doris.pull_requests',\n" +
+                "  'table.identifier' = 'test.pull_requests',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               

@@ -4,7 +4,7 @@ import java.util.UUID;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
-public class CDC_onedb_pull_request_reviews {
+public class CDC_onedb_reviews {
 
     public static void main(String[] args) throws Exception {
 
@@ -17,7 +17,7 @@ public class CDC_onedb_pull_request_reviews {
       
         final StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
         
-        String jobName = "cdc_onedb_pull_request_reviews";
+        String jobName = "cdc_onedb_reviews";
         tEnv.getConfig().getConfiguration().setString("pipeline.name", jobName);
         
         // register a table in the catalog
@@ -69,7 +69,7 @@ public class CDC_onedb_pull_request_reviews {
                 "WITH (\n" +
                 "  'connector' = 'doris',\n" +
                 "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
-                "  'table.identifier' = 'fdws_doris.pull_request_reviews',\n" +
+                "  'table.identifier' = 'test.pull_request_reviews',\n" +
                 "  'username' = 'root',\n" +
                 "  'password' = 'root',\n" +    
                 "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               

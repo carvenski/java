@@ -41,7 +41,7 @@ public class CDC_onedb_hsds {
             "  'username' = 'doris_sync',\n" +
             "  'password' = 'doris_sync@intel',\n" +
             "  'database-name' = 'onedb_mysql',\n" +
-            "  'table-name' = 'hsds',\n" +
+            "  'table-name' = 'pull_request_hsds',\n" +
             "  'scan.startup.mode' = 'latest-offset',\n" +
             String.format("  'server-id' = '%s' ", args[0]) +
             ")");
@@ -63,7 +63,7 @@ public class CDC_onedb_hsds {
             "WITH (\n" +
             "  'connector' = 'doris',\n" +
             "  'fenodes' = 'doris-web.datainfra.intel.com',\n" +
-            "  'table.identifier' = 'fdws_doris.hsds',\n" +
+            "  'table.identifier' = 'test.pull_request_hsds',\n" +
             "  'username' = 'root',\n" +
             "  'password' = 'root',\n" +    
             "  'sink.label-prefix' = 'doris_label_"+UUID.randomUUID().toString()+"',\n" +               
