@@ -1,0 +1,117 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form"
+         xmlns:c="/lib/credentials">
+    <f:entry title="Labels" field="label">
+        <f:textbox value="${dockerSwarmAgentTemplate.label}" default="docker-agent"/>
+    </f:entry>
+
+    <f:entry title="Image" field="image">
+        <f:textbox value="${dockerSwarmAgentTemplate.image}" default="java:8"/>
+    </f:entry>
+    <f:entry title="Unix Command" field="unixCommand">
+        <f:textarea value="${dockerSwarmAgentTemplate.unixCommand}" default="sh&#10;-cx&#10;curl --connect-timeout 20 --max-time 60 -o agent.jar $DOCKER_SWARM_PLUGIN_JENKINS_AGENT_JAR_URL &amp;&amp; java -jar agent.jar -jnlpUrl $DOCKER_SWARM_PLUGIN_JENKINS_AGENT_JNLP_URL -secret $DOCKER_SWARM_PLUGIN_JENKINS_AGENT_SECRET -noReconnect -workDir /tmp"/>
+    </f:entry>
+    <f:entry title="Windows Command" field="windowsCommand">
+        <f:textbox value="${dockerSwarmAgentTemplate.windowsCommand}" default="powershell.exe &amp; { Invoke-WebRequest -TimeoutSec 20 -OutFile agent.jar %DOCKER_SWARM_PLUGIN_JENKINS_AGENT_JAR_URL%; if($?) { java -jar agent.jar -jnlpUrl %DOCKER_SWARM_PLUGIN_JENKINS_AGENT_JNLP_URL% -secret %DOCKER_SWARM_PLUGIN_JENKINS_AGENT_SECRET% -noReconnect } }"/>
+    </f:entry>
+    <f:entry title="Working Directory" field="workingDir">
+        <f:textbox value="${dockerSwarmAgentTemplate.workingDir}" default="/tmp"/>
+    </f:entry>
+    <f:entry title="Isolation" field="isolation">
+        <f:textbox value="${dockerSwarmAgentTemplate.isolation}" default="default"/>
+    </f:entry>
+    <f:entry title="User" field="user">
+        <f:textbox value="${dockerSwarmAgentTemplate.user}"/>
+    </f:entry>
+    <f:entry title="Metadata (newline-separated)" field="metadata">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.metadata}"/>
+    </f:entry>
+    <f:entry title="Env (newline-separated)" field="envVars">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.envVars}"/>
+    </f:entry>
+    <f:entry title="Additional hosts (newline-separated)" field="hosts">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.hosts}"/>
+    </f:entry>
+    <f:entry title="Host Binds (newline-separated)" field="hostBinds">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.hostBinds}"/>
+    </f:entry>
+    <f:entry title="Host Named Pipes (newline-separated)" field="hostNamedPipes">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.hostNamedPipes}"/>
+    </f:entry>
+    <f:entry title="DNS IPs (newline-separated)" field="dnsIps">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.dnsIps}"/>
+    </f:entry>
+    <f:entry title="DNS Search Domains (newline-separated)" field="dnsSearchDomains">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.dnsSearchDomains}"/>
+    </f:entry>
+    <f:entry title="Port binds (newline-separated)" field="portBinds">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.portBinds}"/>
+    </f:entry>
+    <f:entry title="Secrets (newline-separated)" field="secrets">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.secrets}"/>
+    </f:entry>
+    <f:entry title="Configs (newline-separated)" field="configs">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.configs}"/>
+    </f:entry>
+    <f:entry title="Cache Dirs (newline-separated)" field="cacheDir">
+        <f:expandableTextbox value="${dockerSwarmAgentTemplate.cacheDir}"/>
+    </f:entry>
+
+    <f:entry title="Tmpfs Dir" field="tmpfsDir">
+        <f:textbox value="${dockerSwarmAgentTemplate.tmpfsDir}"/>
+    </f:entry>
+    <f:entry title="Workspace Location" field="baseWorkspaceLocation">
+        <f:textbox value="${dockerSwarmAgentTemplate.baseWorkspaceLocation}"/>
+    </f:entry>
+    <f:advanced title="${%Registry Authentication}" align="left">
+        <f:section title="Registry Authentication">
+            <f:entry title="${%Credentials}" field="pullCredentialsId">
+                <c:select />
+            </f:entry>
+            <f:entry title="Email" field="email">
+                <f:textbox value="${dockerSwarmAgentTemplate.email}"/>
+            </f:entry>
+            <f:entry title="Server address" field="serverAddress">
+                <f:textbox value="${dockerSwarmAgentTemplate.serverAddress}"/>
+            </f:entry>
+        </f:section>
+    </f:advanced>
+    <f:advanced title="${%Placement}" align="left">
+        <f:section title="Placement">
+            <f:entry title="Constraints" field="placementConstraints">
+                <f:textbox value="${dockerSwarmAgentTemplate.placementConstraints}"/>
+            </f:entry>
+            <f:entry title="Windows Container" field="osWindows">
+                <f:checkbox checked="${dockerSwarmAgentTemplate.osWindows}"/>
+            </f:entry>
+            <f:entry title="Architecture" field="placementArchitecture">
+                <f:textbox value="${dockerSwarmAgentTemplate.placementArchitecture}"/>
+            </f:entry>
+            <f:entry title="Operating System" field="placementOperatingSystem">
+                <f:textbox value="${dockerSwarmAgentTemplate.placementOperatingSystem}"/>
+            </f:entry>
+        </f:section>
+    </f:advanced>
+    <f:advanced title="${%Limits/Reservations}" align="left">
+        <f:section title="Limits">
+            <f:entry title="NanoCPUs" field="limitsNanoCPUs">
+                <f:number value="${dockerSwarmAgentTemplate.limitsNanoCPUs}"/>
+            </f:entry>
+
+            <f:entry title="MemoryBytes" field="limitsMemoryBytes">
+                <f:number value="${dockerSwarmAgentTemplate.limitsMemoryBytes}"/>
+            </f:entry>
+        </f:section>
+        <f:section title="Reservations">
+            <f:entry title="NanoCPUs" field="reservationsNanoCPUs">
+                <f:number value="${dockerSwarmAgentTemplate.reservationsNanoCPUs}"/>
+            </f:entry>
+
+            <f:entry title="MemoryBytes" field="reservationsMemoryBytes">
+                <f:number value="${dockerSwarmAgentTemplate.reservationsMemoryBytes}"/>
+            </f:entry>
+        </f:section>
+    </f:advanced>
+
+</j:jelly>

@@ -1,0 +1,4 @@
+certificatesPath: "/meow"
+useTLS: true
+dockerSwarmAgentTemplates:
+  - image: meow.com
