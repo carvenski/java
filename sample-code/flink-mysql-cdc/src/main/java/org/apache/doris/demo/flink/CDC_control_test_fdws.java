@@ -148,7 +148,7 @@ public class CDC_control_test_fdws {
               " `_intel_calendar_year` int, \n" +
               " `_intel_calendar_workweek` int, \n" +
               " `_natural_year` int, \n" +
-              " `_natural_month` STRING \n" +
+              " `_natural_month` varchar(255) \n" +
 
                 ") \n" +
                 "WITH (\n" +

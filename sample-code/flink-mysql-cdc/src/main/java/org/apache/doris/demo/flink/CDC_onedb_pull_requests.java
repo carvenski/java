@@ -66,6 +66,7 @@ public class CDC_onedb_pull_requests {
             " `repo_branch` varchar, \n" +
             " `repo_private` tinyint, \n" +
             " `source` varchar, \n" +
+            " `synchronized_at` TIMESTAMP, \n" +            
 
                 "\n PRIMARY KEY(_id) NOT ENFORCED\n" +
                 ") WITH (\n" +
@@ -125,7 +126,8 @@ public class CDC_onedb_pull_requests {
             " `repo_full_name` varchar, \n" +
             " `repo_branch` varchar, \n" +
             " `repo_private` tinyint, \n" +
-            " `source` varchar \n" +
+            " `source` varchar, \n" +
+            " `synchronized_at` TIMESTAMP \n" +            
 
                 ") \n" +
                 "WITH (\n" +
