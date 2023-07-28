@@ -36,4 +36,6 @@ dependencies {
 
 // Define the main class for the application
 mainClassName = 'javaapp.App'
-
+// set jdk version
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
